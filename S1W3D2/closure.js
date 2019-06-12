@@ -52,3 +52,20 @@ console.log(moreOrLess.decrement());
 console.log(moreOrLess.decrement());
 console.log(moreOrLess.decrement());
 console.log(moreOrLess.decrement());
+
+
+//counter again simplified
+const myCounter = () => {
+  let count = 0;
+  return function() {
+    count = count + 1;
+    return count;
+  }
+};
+
+const myNewCounter = myCounter();
+
+console.log(myNewCounter())
+console.log(myNewCounter())
+console.log(myNewCounter())
+console.log(myNewCounter())

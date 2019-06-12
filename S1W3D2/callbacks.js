@@ -126,16 +126,27 @@ function removeDuplicates(array, cb) {
 console.log(removeDuplicates())
 
 
-// function removeDuplicates(arr, cb) {
-//   const seen = {};// a map of the keys. This will hold the values as a bool if 'seen' in the given array.
-//   for (let i = 0; i < arr.length; i++) { // loop over array list and assign the object a 'key' of the given item w/ a value of 'true'
-//     seen[arr[i]] = true; // this will set the key/value pair of each item found in the array to `true`. 
-//     // It will not duplicate the item because Objects can only have one key of of each 'like' so. `yo-yo` will only be added 1 time etc. 
-//   }
-//   cb(Object.keys(seen));// Object.keys generates a list as an array of each key in the object passed to it.
-//   // Could do the same of each value with `Object.values` :) 
-// }
+function removeDuplicates(arr, cb) {
+  const seen = {};// a map of the keys. This will hold the values as a bool if 'seen' in the given array.
+  for (let i = 0; i < arr.length; i++) { // loop over array list and assign the object a 'key' of the given item w/ a value of 'true'
+    seen[arr[i]] = true; // this will set the key/value pair of each item found in the array to `true`. 
+    // It will not duplicate the item because Objects can only have one key of of each 'like' so. `yo-yo` will only be added 1 time etc. 
+  }
+  cb(Object.keys(seen));// Object.keys generates a list as an array of each key in the object passed to it.
+  // Could do the same of each value with `Object.values` :) 
+}
 
-// removeDuplicates(items, function(dupeFreeArray) { 
-//   console.log(dupeFreeArray);
-// });
+removeDuplicates(items, function(dupeFreeArray) { 
+  console.log(dupeFreeArray);
+});
+
+//Basic callBack Tutorials
+
+const elements = [1, 2, 3, 4];
+
+
+const newForEach = (list, callBack) => {
+for(let i =  0; i < list.length; i++){
+  console.log(list[i], i)
+  }
+}
