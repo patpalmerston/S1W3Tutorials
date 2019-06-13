@@ -8,71 +8,44 @@ Prototype Refactor
 
 */
 
-/*
-  Object oriented design is commonly used in video games.  For this part of the assignment you will be implementing several constructor functions with their correct inheritance hierarchy.
 
-  In this file you will be creating three constructor functions: GameObject, CharacterStats, Humanoid.  
+class GameObject {
+  constructor(gameAttrs){
+    this.createdAt = gameAttrs.createdAt;
+    this.name = gameAttrs.name;
+    this.dimensions = gameAttrs.dimensions;
+  }
 
-  At the bottom of this file are 3 objects that all end up inheriting from Humanoid.  Use the objects at the bottom of the page to test your constructor functions.
-  
-  Each constructor function has unique properties and methods that are defined in their block comments below:
-*/
-  
-/*
-  === GameObject ===
-  * createdAt
-  * name
-  * dimensions (These represent the character's size in the video game)
-  * destroy() // prototype method that returns: `${this.name} was removed from the game.`
-*/
-function GameObject(gameAttrs) {
-  this.createdAt = gameAttrs.createdAt;
-  this.name = gameAttrs.name;
-  this.dimensions = gameAttrs.dimensions;
-}
-
-GameObject.prototype.destroy = function() {
-  return `${this.name} was removed from the game.`
-}
-
-/*
-  === CharacterStats ===
-  * healthPoints
-  * takeDamage() // prototype method -> returns the string '<object name> took damage.'
-  * should inherit destroy() from GameObject's prototype
-*/
-function CharacterStats(charAttrs) {
-  GameObject.call(this, charAttrs);
-  this.healthPoints =  charAttrs.healthPoints;
+  destroy(){
+    return `${this.name} was removed from the game.`
+  }
 }
 
 
-CharacterStats.prototype = Object.create(GameObject.prototype)
-CharacterStats.prototype.takeDamage = function() {
-  return `${this.name} took damage.`
+class CharacterStats extends GameObject {
+  constructor(charAttrs) {
+    super(charAttrs)
+    this.healthPoints =  charAttrs.healthPoints;
+  }
+  takeDamage(){
+    return `${this.name} took damage.`
+  }
 }
 
 
-/*
-  === Humanoid (Having an appearance or character resembling that of a human.) ===
-  * team
-  * weapons
-  * language
-  * greet() // prototype method -> returns the string '<object name> offers a greeting in <object language>.'
-  * should inherit destroy() from GameObject through CharacterStats
-  * should inherit takeDamage() from CharacterStats
-*/
- function Humanoid(humAttrs) {
-  CharacterStats.call(this, humAttrs);
-  this.team = humAttrs.team;
-  this.weapons = humAttrs.weapons;
-  this.language = humAttrs.language;
+ class Humanoid extends CharacterStats {
+   constructor(humAttrs) {
+     super(humAttrs)
+     this.team = humAttrs.team;
+     this.weapons = humAttrs.weapons;
+     this.language = humAttrs.language;
+   }
+   greet(){
+    return `${this.name} offers a greeting in ${this.language}`
+   }
  }
 
- Humanoid.prototype = Object.create(CharacterStats.prototype)
- Humanoid.prototype.greet = function() {
-   return `${this.name} offers a greeting in ${this.language}`
- }
+ 
 
  
 /*
